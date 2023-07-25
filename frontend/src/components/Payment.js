@@ -34,8 +34,7 @@ const Payment = () => {
       const json = await res.json();
       return await Promise.reject(json);
     }).then(({ url }) => {
-      // console.log(url)
-      window.open(url, '_blank')
+      window.open(url)
     }).catch(e => {
       console.error(e.error)
     });
