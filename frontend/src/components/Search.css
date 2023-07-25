@@ -1,0 +1,50 @@
+hr{
+    margin: 5px;
+    color: #bfc0c1;
+}
+.vr{
+    color: #bfc0c182;
+    opacity: 1;
+}
+.formInput{
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
+}
+.rounded-pill{
+    color: black;
+    background-color: #e8f3ff;
+    font-weight: initial;
+}
+
+.searchBtn{
+    padding: 13px 80px;
+    color: white;
+    background-color: #ff6d38;
+    font-family: 'Rubik', sans-serif;
+    font-size: 24px;
+    border-radius: 75px;
+}
+.searchBtn:hover{
+    padding: 13px 80px;
+    color: white;
+    background-color: #ff6d38;
+    font-family: 'Rubik', sans-serif;
+    font-size: 24px;
+    border-radius: 75px;
+}
+.searchBtn:active{
+    padding: 13px 80px;
+    color: white !important;
+    background-color: #ff6d38 !important;
+    font-family: 'Rubik', sans-serif;
+    font-size: 24px;
+    border-radius: 75px;
+}
+.searchBtn:focus-visible{
+    padding: 13px 80px;
+    color: white;
+    background-color: #ff6d38;
+    font-family: 'Rubik', sans-serif;
+    font-size: 24px;
+    border-radius: 75px;
+}

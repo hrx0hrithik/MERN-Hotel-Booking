@@ -1,0 +1,23 @@
+.tabs-btn{
+    color: #777777;
+    font-weight: 400;
+    font-family: 'Rubik', sans-serif;
+    border: 2px solid #e9e8e8;
+    border-radius: 20px;
+    text-decoration: none;
+    padding: 6px 15px;
+}
+
+
+.nav-icon{
+    color: #2274e0;
+}
+
+.active-tab{
+    background-color:#2274e0;
+    color: white;
+}
+
+.active-tab > .bi{
+    color: white;
+}

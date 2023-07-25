@@ -1,0 +1,22 @@
+.home{
+        background-image: url("../assets/images/background_circle1.png");
+        background-repeat: no-repeat;
+        margin-bottom: 20px;
+}
+.home-heading{
+    color: white;
+    font-weight: bold;
+    padding: 9px;
+    font-family: 'Rubik', sans-serif;
+}
+
+.deal-of-day{
+    font-weight: bold;
+    padding: 15px;
+    font-family: 'Rubik', sans-serif;
+}
+
+.cardImg{
+    height: 30vh;
+    object-fit: cover;
+}

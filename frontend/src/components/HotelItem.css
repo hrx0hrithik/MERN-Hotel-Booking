@@ -1,0 +1,132 @@
+.bi-star-fill , .bi-star-half{
+    color: #fdba00;
+    padding: 0 2px;
+}
+.background{
+    height: 340px;
+    background-color: #2274e0;
+}
+.page{
+    margin-top: 90px;
+}
+.hotel-detail-page {
+    max-width: 85vw;
+    margin-top: 50px;
+    padding-top: 20px;
+}
+.left-panel{
+    font-family: 'Rubik', sans-serif;
+    width: 63%;
+    /* margin-top: 47px; */
+}
+.hotel-detial-top{
+    background-color: white;
+    border-radius: 10px;
+}
+.right-panel{
+    width: 32%;
+    margin: 0;
+    padding: 0;
+}
+.price-panel{
+    background-color: white;
+    border-radius: 10px;
+    position: sticky;
+    top: 70px;
+}
+
+p{
+    font-family:inherit;
+    font-weight: initial;
+    margin: 0;
+}
+/* span{
+    font-family: inherit;
+    font-weight: initial;
+} */
+
+h5{
+    font-family: inherit;
+    font-weight: bold;
+}
+.hotel-card{
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.hotel-card:hover{
+    border: 1px solid #3280e5;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+.card-title{
+    margin-bottom: 0;
+}
+
+.location-text{
+    font-size:medium;
+    margin: 0;
+    padding: 0;
+}
+
+.paymentBtn{
+    background-color: #ff6d38;
+    border: none;
+    color: white;
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
+}
+.cutPrice{
+    font-size: small;
+    text-decoration: line-through;
+    color: #7b7b7b;
+}
+.newPrice{
+    font-size: larger;
+    font-weight: bolder;
+    color: #ff4848;
+}
+.priceSummary{
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
+}
+
+.guestinfo{
+    display: flex;
+    flex-wrap: wrap;
+}
+.addguest{
+    font-size: medium;
+    font-family: initial;
+    text-decoration: underline;
+    color: #3280e5;
+    font-weight: 100;
+    cursor: pointer;
+}
+.guesttitle, .guestname, .guestage{
+    display: flex;
+    flex-direction: column;
+}
+.guestlable{
+    font-weight: 100;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.cardImg{
+    height: 30vh;
+    object-fit: cover;
+}
+.carouselImg{
+    max-height: 48vh ;
+    object-fit: cover;
+}
+.reservationdetails{
+    background-color: #e8f3ff;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+.smallText{
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    color:#7f8081;
+    font-weight: 100;
+}

@@ -1,0 +1,6 @@
+.backcolor{
+    height: 350px;
+    background-color: #2274e0;
+    z-index: -1;
+    background-attachment: fixed;
+}
