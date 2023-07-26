@@ -79,7 +79,7 @@ const PaymentSuccess = () => {
     handleDownloadReceipt();
     setTimeout(() => {
      history('/') ;
-    }, 5000);
+    }, 8000);
     } // eslint-disable-next-line
   }, [receiptFilePath]);
 
