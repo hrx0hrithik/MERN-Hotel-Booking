@@ -12,6 +12,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRECT_KEY)
 
 app.use(cors({ origin: "*",optionsSuccessStatus:200 }));
 app.use(express.json());
+app.use(express.static('public'));
 
 connectToMongo();
 
