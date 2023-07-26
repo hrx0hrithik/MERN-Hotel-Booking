@@ -1,11 +1,13 @@
 import React, { useContext } from 'react'
 import reservationContext from "../context/reservationContext";
 import hotelContext from '../context/hotelContext';
+import { useNavigate } from 'react-router-dom';
 
 
 const Payment = () => {
-  const host = process.env.REACT_APP_HOST_URL;
-
+  // const host = process.env.REACT_APP_HOST_URL;
+  
+  let history = useNavigate();
   const context = useContext(reservationContext);
   const context2 = useContext(hotelContext);
 
@@ -14,35 +16,42 @@ const Payment = () => {
 
 
   const checkOut = ()=>{
-    fetch(`${host}/create-checkout-session`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        hotelBookingDetails: {
-          hotelName: selectedHotelDetails.hotelName,
-          imageUrl: selectedHotelDetails.imageUrl,
-          totalAmount: totalAmount, // Make sure totalAmount is provided here
-          checkInDate: reservation.checkInDate,
-          chechInTime: "11:00 AM",
-          chechOutDate: reservation.checkOutDate,
-          chechOutTime: "02:00 AM",
-        },
-        guestDetails: guestDetails
-      })
-    }).then(async res => {
-      if (res.ok) return res.json()
-      const json = await res.json();
-      return await Promise.reject(json);
-    }).then(({ url }) => {
-      window.open(url)
-    }).catch(e => {
-      console.error(e.error)
-    });
+
+    alert("Payment Successfull");
+    history('/payment/success')
+
+
+  //   fetch(`${host}/create-checkout-session`, {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({
+  //       hotelBookingDetails: {
+  //         hotelName: selectedHotelDetails.hotelName,
+  //         imageUrl: selectedHotelDetails.imageUrl,
+  //         totalAmount: totalAmount, // Make sure totalAmount is provided here
+  //         checkInDate: reservation.checkInDate,
+  //         checkInTime: "11:00 AM",
+  //         checkOutDate: reservation.checkOutDate,
+  //         checkOutTime: "02:00 AM",
+  //       },
+  //       guestDetails: guestDetails
+  //     })
+  //   }).then(async res => {
+  //     if (res.ok) return res.json()
+  //     const json = await res.json();
+  //     return await Promise.reject(json);
+  //   }).then(({ url }) => {
+  //     window.open(url)
+  //   }).catch(e => {
+  //     console.error(e.error)
+  //   });
     
     localStorage.setItem('totalAmount', totalAmount);
     localStorage.setItem('guesttitle', guestDetails.title);
     localStorage.setItem('guestname', guestDetails.fullname);
     localStorage.setItem('guestphone', guestDetails.phone);
+    // localStorage.setItem('ckeckInTime', checkInTime);
+    // localStorage.setItem('ckeckOutTime', checkOutTime);
     localStorage.setItem('ckeckIn', reservation.checkInDate);
     localStorage.setItem('ckeckOut', reservation.checkOutDate);
     localStorage.setItem('hotelName', selectedHotelDetails.hotelName);
