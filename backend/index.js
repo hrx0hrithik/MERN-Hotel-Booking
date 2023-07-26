@@ -108,7 +108,7 @@ app.post('/generate-receipt', upload.single('logo'), (req, res) => {
         </style>
       </head>
       <body>
-      <img class="logo" src="/logo/logo.png" alt="Company Logo" style="width: 290px;">
+      <img class="logo" src="/logo.png" alt="Company Logo" style="width: 290px;">
         <h3>Stripe Payment</h3>
         <div class="receipt">
           <h2>Receipt</h2>
