@@ -122,10 +122,6 @@ const Payment = () => {
         body: JSON.stringify(receiptData),
       });
 
-      
-    // console.log('Response status:', response.status);
-    // console.log('Response text:', await response.text());
-
       if (!response.ok) {
         throw new Error('Failed to generate receipt');
       }
@@ -139,10 +135,9 @@ const Payment = () => {
     document.body.appendChild(downloadLink);
     downloadLink.click();
 
-      // setTimeout(()=>{
-      //   history('/')
-      // },3000)
-      console.log("downloading")
+      setTimeout(()=>{
+        history('/')
+      },3000)
 
     } catch (error) {
       console.error('Error generating receipt:', error);
@@ -152,7 +147,7 @@ const Payment = () => {
   return (
     <div className='container'>
       <h1 className='mt-5 pt-5 mb-2'>Confirm the Payment of <strong style={{color: "#ff6d38"}}>₹{totalAmount}</strong> </h1>
-      <button className='btn btn-success mx-5' onClick={handlePayment}>Pay ₹{totalAmount} with Razorpay</button>
+      <button className='btn btn-success ms-5 me-2' onClick={handlePayment}>Pay ₹{totalAmount}</button>with Razorpay
       {paymentStatus === 'success' && ( 
         <>
         <h2 className='text-success'>Payment Successfull !!!</h2>
@@ -162,7 +157,18 @@ const Payment = () => {
         </button>
         </>
       )}
-      <p className='closeTab m-3'>After payment, you can close this tab</p>
+      <p className='closeTab m-3'>After payment, you will redirected to Home page</p>
+      <p className='text-danger'>This is a Test Payment Mode</p>
+      <p><span className='fw-bold' >Use Cards </span>(with any random CVV and Any future Expiry Date)</p>
+      <ul>
+        <li>For Visa use : 4111 1111 1111 1111</li>
+        <li>For Mastercard use : 5267 3181 8797 5449</li>
+      </ul>
+      <p className='fw-bold'>Use UPI </p>
+      <ul>
+        <li>success@razorpay</li>
+        <li className='text-danger'>failure@razorpay</li>
+      </ul>
     </div>
   );
 };
