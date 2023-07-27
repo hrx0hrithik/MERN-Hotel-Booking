@@ -14,7 +14,6 @@ const Payment = () => {
   const { selectedHotelDetails, confirmBooking } = context2;
 
   const [paymentStatus, setPaymentStatus] = useState(null);
-  const [receiptGenerated, setReceiptGenerated] = useState(false);
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -136,8 +135,6 @@ const Payment = () => {
        document.body.appendChild(downloadLink);
        downloadLink.click();
        document.body.removeChild(downloadLink);
-
-      setReceiptGenerated(true);
 
       setTimeout(()=>{
         history('/')
