@@ -122,23 +122,27 @@ const Payment = () => {
         body: JSON.stringify(receiptData),
       });
 
+      
+    // console.log('Response status:', response.status);
+    // console.log('Response text:', await response.text());
+
       if (!response.ok) {
         throw new Error('Failed to generate receipt');
       }
 
       const receiptBlob = await response.blob();
       const receiptURL = URL.createObjectURL(receiptBlob);
-       // Automatically trigger the receipt download
-       const downloadLink = document.createElement('a');
-       downloadLink.href = receiptURL;
-       downloadLink.download = `receipt_${guestDetails.fullname}_${Date.now()}.pdf`;
-       document.body.appendChild(downloadLink);
-       downloadLink.click();
-       document.body.removeChild(downloadLink);
+      // Automatically trigger the receipt download
+    const downloadLink = document.createElement('a');
+    downloadLink.href = receiptURL;
+    downloadLink.download = `receipt_${guestDetails.fullname}_${Date.now()}.pdf`;
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
 
-      setTimeout(()=>{
-        history('/')
-      },3000)
+      // setTimeout(()=>{
+      //   history('/')
+      // },3000)
+      console.log("downloading")
 
     } catch (error) {
       console.error('Error generating receipt:', error);
