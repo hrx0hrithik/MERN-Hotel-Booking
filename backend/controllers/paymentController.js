@@ -56,15 +56,29 @@ const handlePaymentCallback = async (req, res) => {
 
       const generateReceipt = async (req, res) => {
         const data = req.body;
+
+        const logoUrl = 'https://mern-hotel-booking.up.railway.app/logo/logo.png';
+        const logoPath = 'logo.png'; // Save the image as logo.png in the current directory
+        const file = fs.createWriteStream(logoPath);
+      
+        https.get(logoUrl, (response) => {
+          response.pipe(file);
+        });
+      
+        // Wait for the image to be downloaded
+        await new Promise((resolve) => {
+          file.on('finish', () => {
+            file.close(resolve);
+          });
+        });
       
         // Create a new PDF document using pdfkit
         const doc = new pdfkit();
         doc.pipe(res); // Pipe the PDF directly to the response
       
         // Customize the PDF content
-        doc.image("https://mern-hotel-booking.up.railway.app/logo/logo.png", {
-          fit: [290, 100], // Adjust the logo size
-        });
+        doc.image('public/logo.png', { fit: [290, 100] });
+
         doc.fontSize(14).text('Razorpay Payment', { align: 'center' });
         doc.moveDown(1);
       
