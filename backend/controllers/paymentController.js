@@ -62,7 +62,7 @@ const handlePaymentCallback = async (req, res) => {
         doc.pipe(res); // Pipe the PDF directly to the response
       
         // Customize the PDF content
-        doc.image('https://mern-hotel-booking.up.railway.app/logo/logo.png', {
+        doc.image("https://mern-hotel-booking.up.railway.app/logo/logo.png", {
           fit: [290, 100], // Adjust the logo size
         });
         doc.fontSize(14).text('Razorpay Payment', { align: 'center' });
