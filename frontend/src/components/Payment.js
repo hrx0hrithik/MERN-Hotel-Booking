@@ -76,7 +76,7 @@ const Payment = () => {
           })
             .then((res) => res.json())
             .then((data) => {
-              console.log('Payment verification:', data);
+              // console.log('Payment verification:', data);
               setPaymentStatus('success');
               confirmBooking('success')
             })

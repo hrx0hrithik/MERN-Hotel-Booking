@@ -54,7 +54,7 @@ const confirmBooking = async (bookingStatus) => {
     })
     // eslint-disable-next-line
     const json = await response.json();
-    console.log(reservation, hotelId, bookingStatus, paymentInfo, billingAdd, pinCode, state)
+    // console.log(reservation, hotelId, bookingStatus, paymentInfo, billingAdd, pinCode, state)
 }
 
 return (
