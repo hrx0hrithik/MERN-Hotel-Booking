@@ -45,7 +45,7 @@ router.put('/booking', fetchuser, async (req, res)=>{
     // update user with hotel booking and payment details
     let updateUser = await User.findByIdAndUpdate(userId, { $set:{ "booking.reservation": reservation, "booking.paymentInfo": paymentInfo, "booking.hotelId": hotelId, "booking.bookingStatus": bookingStatus } })
     res.json(updateUser);
-    // console.log(req.body, paymentInfo)
+    // console.log(req.body)
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Internal Server Error");

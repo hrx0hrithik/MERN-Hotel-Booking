@@ -13,8 +13,6 @@ import Payment from "./components/Payment";
 import UserState from "./context/UserState";
 import Alerts from "./components/Alerts";
 import { useState } from "react";
-import PaymentSuccess from "./components/PaymentSuccess";
-import PaymentCancel from "./components/PaymentCancel";
 import Profile from "./components/Profile";
 
 function App() {
@@ -62,16 +60,6 @@ function App() {
                   element={<RoomSelect />}
                 ></Route>
                 <Route exact path="/payment" element={<Payment />}></Route>
-                <Route
-                  exact
-                  path="/payment/success"
-                  element={<PaymentSuccess />}
-                ></Route>
-                <Route
-                  exact
-                  path="/payment/cancel"
-                  element={<PaymentCancel />}
-                ></Route>
               </Routes>
             </Router>
           </HotelState>

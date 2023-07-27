@@ -6,7 +6,7 @@ const HotelState = (props)=>{
 
     const date = new Date().toISOString()
     const context = useContext(reservationContext);
-    const { reservation, guestDetails } = context;
+    const { reservation, guestDetails, totalAmount } = context;
 
 const host = process.env.REACT_APP_HOST_URL;
 const [hotels, setHotels] = useState([]);
@@ -34,9 +34,10 @@ const getHotelDetail = async (id) =>{
     // console.log(hotelDetails)
 }
 
-const confirmBooking = async (bookingStatus, hotelId, totalAmount) => {
+const confirmBooking = async (bookingStatus) => {
 
     const token = localStorage.getItem('token');
+    const hotelId = selectedHotelDetails._id;
     const billingAdd = guestDetails.address;
     const { pinCode, state } = guestDetails;
     let paidAt = date;
@@ -53,7 +54,7 @@ const confirmBooking = async (bookingStatus, hotelId, totalAmount) => {
     })
     // eslint-disable-next-line
     const json = await response.json();
-    console.log(hotelId)
+    console.log(reservation, hotelId, bookingStatus, paymentInfo, billingAdd, pinCode, state)
 }
 
 return (

@@ -1,72 +1,169 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react';
 import reservationContext from "../context/reservationContext";
 import hotelContext from '../context/hotelContext';
 import { useNavigate } from 'react-router-dom';
 
-
 const Payment = () => {
-  // const host = process.env.REACT_APP_HOST_URL;
+  const host = process.env.REACT_APP_HOST_URL;
   
-  let history = useNavigate();
   const context = useContext(reservationContext);
   const context2 = useContext(hotelContext);
+  let history = useNavigate();
 
   const { guestDetails, totalAmount, reservation } = context;
-  const { selectedHotelDetails } = context2;
+  const { selectedHotelDetails, confirmBooking } = context2;
 
+  const [paymentStatus, setPaymentStatus] = useState(null);
+  const [receiptGenerated, setReceiptGenerated] = useState(false);
 
-  const checkOut = ()=>{
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.async = true;
+    document.body.appendChild(script);
 
-    alert("Payment Successfull");
-    history('/payment/success')
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
+  const handlePayment = async () => {
+    const paymentData = {
+      amount: totalAmount * 100,
+      currency: 'INR',
+      receipt: 'order_rcptid_123',
+      notes: {
+        customer_name: guestDetails.title + '. ' + guestDetails.fullname,
+        phone: guestDetails.phone,
+        checkInDate: reservation.checkInDate,
+        checkInTime: '11:00 AM',
+        checkOutDate: reservation.checkOutDate,
+        checkOutTime: '02:00 AM',
+        paidTo: selectedHotelDetails.hotelName,
+      },
+    };
+  
+    try {
+      const response = await fetch(`${host}/api/payment/createPayment`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(paymentData),
+      });
+  
+      const responseData = await response.json();
+  
+      if (!response.ok) {
+        throw new Error('Failed to create Razorpay order');
+      }
+  
+      const order = responseData.order;
+  
+      const options = {
+        key: 'rzp_test_MmH7RMh9ds3u1o',
+        amount: order.amount,
+        currency: 'INR',
+        name: 'Hotel Booking',
+        description: 'Payment for Hotel Booking',
+        order_id: order.id,
+        handler: function (response) {
+          fetch(`${host}/api/payment/paymentCallback`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(response),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log('Payment verification:', data);
+              setPaymentStatus('success');
+              confirmBooking('success')
+            })
+            .catch((error) => {
+              console.error('Error verifying payment:', error);
+            });
+        },
+        prefill: {
+          name: guestDetails.fullname,
+          email: guestDetails.billEmail,
+          contact: guestDetails.phone,
+        },
+      };
+  
+      const paymentObject = new window.Razorpay(options);
+      paymentObject.open();
+  
+    } catch (error) {
+      console.error('Error creating Razorpay order:', error);
+    }
+  };
 
-  //   fetch(`${host}/create-checkout-session`, {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify({
-  //       hotelBookingDetails: {
-  //         hotelName: selectedHotelDetails.hotelName,
-  //         imageUrl: selectedHotelDetails.imageUrl,
-  //         totalAmount: totalAmount, // Make sure totalAmount is provided here
-  //         checkInDate: reservation.checkInDate,
-  //         checkInTime: "11:00 AM",
-  //         checkOutDate: reservation.checkOutDate,
-  //         checkOutTime: "02:00 AM",
-  //       },
-  //       guestDetails: guestDetails
-  //     })
-  //   }).then(async res => {
-  //     if (res.ok) return res.json()
-  //     const json = await res.json();
-  //     return await Promise.reject(json);
-  //   }).then(({ url }) => {
-  //     window.open(url)
-  //   }).catch(e => {
-  //     console.error(e.error)
-  //   });
-    
-    localStorage.setItem('totalAmount', totalAmount);
-    localStorage.setItem('guesttitle', guestDetails.title);
-    localStorage.setItem('guestname', guestDetails.fullname);
-    localStorage.setItem('guestphone', guestDetails.phone);
-    // localStorage.setItem('ckeckInTime', checkInTime);
-    // localStorage.setItem('ckeckOutTime', checkOutTime);
-    localStorage.setItem('ckeckIn', reservation.checkInDate);
-    localStorage.setItem('ckeckOut', reservation.checkOutDate);
-    localStorage.setItem('hotelName', selectedHotelDetails.hotelName);
-    localStorage.setItem('hotelId', selectedHotelDetails._id);
-    // console.log(selectedHotelDetails, totalAmount, guestDetails, reservation)
- }
+  const handleGenerateReceipt = async () => {
+    try {
+      const receiptData = {
+        title: guestDetails.title,
+        name: guestDetails.fullname,
+        phone: guestDetails.phone,
+        amount: totalAmount,
+        date: new Date().toLocaleString(),
+        checkInDate: reservation.checkInDate,
+        checkInTime: "11:00 AM",
+        checkOutDate: reservation.checkOutDate,
+        checkOutTime: "2:00 PM",
+        paidTo: selectedHotelDetails.hotelName,
+      };
 
+      const response = await fetch(`${host}/api/payment/generateReceipt`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(receiptData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to generate receipt');
+      }
+
+      const receiptBlob = await response.blob();
+      const receiptURL = URL.createObjectURL(receiptBlob);
+       // Automatically trigger the receipt download
+       const downloadLink = document.createElement('a');
+       downloadLink.href = receiptURL;
+       downloadLink.download = `receipt_${guestDetails.fullname}_${Date.now()}.pdf`;
+       document.body.appendChild(downloadLink);
+       downloadLink.click();
+       document.body.removeChild(downloadLink);
+
+      setReceiptGenerated(true);
+
+      setTimeout(()=>{
+        history('/')
+      },3000)
+
+    } catch (error) {
+      console.error('Error generating receipt:', error);
+    }
+  };
 
   return (
-    <div>
+    <div className='container'>
       <h1 className='mt-5 pt-5 mb-2'>Confirm the Payment of <strong style={{color: "#ff6d38"}}>₹{totalAmount}</strong> </h1>
-      <button className='btn btn-success mx-5' onClick={checkOut}>Pay ₹{totalAmount} with stripe</button>
-      <p className='closeTab m-3'>After payment you can close this tab</p>
+      <button className='btn btn-success mx-5' onClick={handlePayment}>Pay ₹{totalAmount} with Razorpay</button>
+      {paymentStatus === 'success' && ( 
+        <>
+        <h2 className='text-success'>Payment Successfull !!!</h2>
+        <p>If Receipt does not download automaticlly click</p>
+        <button className='btn btn-primary mx-5 mt-3' onClick={handleGenerateReceipt}>
+          Generate Receipt
+        </button>
+        </>
+      )}
+      <p className='closeTab m-3'>After payment, you can close this tab</p>
     </div>
-  )
-}
+  );
+};
 
-export default Payment
+export default Payment;
