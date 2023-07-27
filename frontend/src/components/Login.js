@@ -23,8 +23,6 @@ function Login(props) {
           });
           //authToken recived in json
           const json = await response.json();
-
-          console.log(host)
           
           if (json.success){
             // Save the auth token and redirect
