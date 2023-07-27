@@ -40,10 +40,6 @@ p{
     font-weight: initial;
     margin: 0;
 }
-/* span{
-    font-family: inherit;
-    font-weight: initial;
-} */
 
 h5{
     font-family: inherit;
@@ -112,7 +108,7 @@ h5{
 }
 
 .cardImg{
-    height: 30vh;
+    height: 34vh;
     object-fit: cover;
 }
 .carouselImg{
