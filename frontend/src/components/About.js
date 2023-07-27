@@ -5,7 +5,7 @@ function About() {
   const aboutPageStyle = {
     padding: '20px',
     maxWidth: '800px',
-    margin: '800px auto 20px auto',
+    margin: '90px auto 20px auto',
     backgroundColor: "white",
     borderRadius: "15px",
     boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"
