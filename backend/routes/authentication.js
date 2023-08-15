@@ -1,10 +1,14 @@
 const express = require("express");
 const User = require("../models/User");
+const fs = require('fs');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const dotenv = require("dotenv");
 const fetchuser = require('../middleware/fetchusermiddleware')
+const multer = require("multer");
+
+const upload = multer();
 
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
@@ -69,7 +73,7 @@ router.post("/login", async (req, res) => {
           }
           const authToken = jwt.sign(data, JWT_SECRET_KEY);
           success = true;
-          res.json({ success, authToken})
+          res.json({ success, authToken })
     
       } catch (error) {
           console.error(error.message);
@@ -90,5 +94,21 @@ router.post("/login", async (req, res) => {
         res.status(500).send("Internal Server Error");
       }
    })
+
+     // Router 4: Updating User details : POST "/api/auth/updateprofileimg" . login required
+
+     router.post("/updateprofileimg", fetchuser, upload.single('image'), async (req, res) => {
+      const imageBuffer = req.file.buffer;
+      try {
+        let userId = req.user.id;
+        const user = await User.findByIdAndUpdate(userId, { $set: { 'profileImg.imgBuffer':imageBuffer } } )
+        res.json(user);
+        // res.status(200).send('Image uploaded successfully');
+      } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Server Error");
+      }
+     })
+
 
   module.exports = router 

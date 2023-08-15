@@ -1,3 +1,9 @@
+.search-form{
+    max-width: 45%;
+    min-width: 450px;
+    min-height: 390px;
+    padding: 0.5rem;
+}
 hr{
     margin: 5px;
     color: #bfc0c1;
@@ -6,14 +12,22 @@ hr{
     color: #bfc0c182;
     opacity: 1;
 }
+.radio{
+    justify-content: space-around;
+    padding: 0.25rem;
+}
 .formInput{
     font-family: 'Rubik', sans-serif;
     font-weight: bold;
+}
+#search-input, #gusts-rooms{
+    margin: 0.5rem;
 }
 .rounded-pill{
     color: black;
     background-color: #e8f3ff;
     font-weight: initial;
+    padding: 0.5rem 1rem;
 }
 
 .searchBtn{
@@ -47,4 +61,80 @@ hr{
     font-family: 'Rubik', sans-serif;
     font-size: 24px;
     border-radius: 75px;
+}
+
+@media only screen and (max-width: 771.98px){
+    hr{
+        margin: 1px;
+    }
+    .guest-detail{
+        font-size: 1rem;
+    }
+    .search-form{
+        max-width: 450px;
+        min-width: 300px;
+        min-height: 275px;
+        margin-bottom: 55px;
+    }
+    .search-body{
+        padding: 4px;
+    }
+    #search-input, #gusts-rooms{
+        margin: 0;
+    }
+    .searchBtn{
+        font-size: inherit;
+        padding: 8px 30px;
+        margin: 0;
+    }
+    .searchBtn:hover{
+        font-size: inherit;
+        padding: 8px 30px;
+    }
+    .radio{
+        justify-content: center;
+        background-color: #eff3f8;
+        max-width: 50%;
+        min-width: 215px;
+        margin: auto;
+        border-radius: 45px;
+        padding: 0px;
+    }
+    .form-check{
+        min-height: auto;
+        margin: 0;
+        padding: 0;
+    }
+    .form-check-input[type="radio"]{
+        visibility: hidden;
+        height: 0;
+        width: 0;
+        margin: 0;
+    }
+    .form-check-label{
+        font-size: 14px;
+        font-weight: 700;
+        color: #7e90a9;
+        padding: 4px 20px;
+        margin: 0 10px;
+        transition: 0.15s ease-in-out;
+    }
+    #flexRadioDefault1:checked + .label-1{
+        background-color: #2274e0;
+        /* padding: 4px 20px; */
+        color: white;
+        border-radius: 45px;
+    }
+    #flexRadioDefault2:checked + .label-2{
+        background-color: #2274e0;
+        /* padding: 4px 20px; */
+        color: white;
+        border-radius: 45px;
+    }
+    #check-in, #check-out{
+        width: 95px;
+    }
+    .guest-heading{
+        font-size: inherit;
+    }
 }

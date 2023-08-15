@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import "./HotelItem.css";
+import './AvalableHotel.css'
 import hotelContext from "../context/hotelContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import reservationContext from "../context/reservationContext";
@@ -55,6 +56,10 @@ function RoomSelect() {
     }
   }
 
+  function handleClick() {
+    history(-1)
+  }
+
   const onChange = (e)=>{
     setGuestDetails({...guestDetails, [e.target.name]: e.target.value})
   }
@@ -67,14 +72,23 @@ function RoomSelect() {
     }, [pathname]);
  
   return (
-    <div className="background ">
-      <div className="container my-5">
+    <>
+        <div className="backcolor pt-1">
+    <i className="bi bi-arrow-left-short" onClick={handleClick}></i>
+    <h2 className='hotel-mob-heading'>Review Booking</h2>
+      </div>
+      <div className="container content mb-0">
         <div className="hotel-detail-page d-flex justify-content-between my-3">
           
-          <form className="left-panel d-flex flex-column m-1" onSubmit={handleSubmit}>
-            <div className=" hotel-detial-top container py-4 px-3">
-              <h4>HOTEL INFO</h4>
-              <hr />
+          <form className="left-panel d-flex flex-column" onSubmit={handleSubmit}>
+            <div className=" hotel-detial-top container">
+              <h4 className="hotel-info-top">HOTEL INFO</h4>
+              <hr className="hotel-info-top" />
+              <div className="top-wrap">
+              <div className="mob-img-div">
+                <img src={selectedHotelDetails.imageUrl} alt="hotel" className="mob-img" />
+              </div>
+                <div>
               <div id="stars">
               <StarRating rating = {selectedHotelDetails.rating}/>
               </div>
@@ -83,6 +97,9 @@ function RoomSelect() {
               <i className="bi bi-geo-alt"></i> {selectedHotelDetails.location}
               </p>
               <span className="badge rounded-pill text-bg-success">{selectedHotelDetails.rating}/5</span>
+              </div>
+              </div>
+              <hr className="mob-hr" />
               <div id="carouselExampleIndicators" className="carousel slide m-2 p-2">
                 <div className="carousel-indicators ">
                   <button
@@ -155,27 +172,29 @@ function RoomSelect() {
                 </button>
               </div>
               
-            <div className="reservationdetails container p-3 d-flex mx- 2">
-              <div className="checkInWrap d-flex flex-column me-5">
+            <div className="reservationdetails container d-flex">
+              <div className="checkInWrap">
                 <span className="smallText">Check In</span>
                 <p> {reservation.checkInDate} </p>
                 <span className="smallText">11:00 AM</span>
               </div>
-              <div className="checkOutWrap d-flex flex-column me-5">
+              <div className="checkInWrap">
               <span className="smallText">Check Out</span>
                 <p> {reservation.checkOutDate} </p>
                 <span className="smallText">02:00 PM</span>
               </div>
-              <div className="checkGuestWrap d-flex flex-column me-4">
+              <div className="checkGuestWrap flex-column me-4">
               <span className="smallText">Guests</span>
                 <p>2 Guets | 1 Room</p>
                 <span className="smallText">{nights} Nights</span>
               </div>
             </div>
+              <hr className="mob-hr" />
             </div>
 
-            <div className=" hotel-detial-top container py-4 px-3 my-3">
-              <h6>GUEST DETAILS</h6>
+            <div className=" hotel-detial-top container my-3">
+              <h6 className="hotel-info-top">GUEST DETAILS</h6>
+              <h6 className="mob-img-div">1 Room for 2 Adults</h6>
               <hr/>
 
               <div className="guestinfo py-2">
@@ -207,10 +226,10 @@ function RoomSelect() {
                 <div> <p className="guestlable">Phone Number</p>  </div>
                 +91 <input type="tel" name="phone" placeholder="Enter Phone Number" required onChange={onChange}/>
             </div>
-            <div className="pinAndState  hotel-detial-top container py-4 px-3 my-3 ">
+            <div className="pinAndState  hotel-detial-top container py-4 px-3 mb-3 ">
               <h6 className="mb-0"> YOUR PINCODE AND STATE </h6>
               <p className="smallText">(Required for GST purpose on your tax invoice. You can edit this anytime later in your profile section. )</p>
-              <div className="d-flex my-3">
+              <div className="d-flex my-3 pinandstate-input">
               <div className="form-floating me-3">
                <input type="text" className="form-control" placeholder="Enter Billing Address" name="address"  required onChange={onChange}/>
               <label htmlFor="floatingInput">Billing Address</label>
@@ -295,7 +314,17 @@ function RoomSelect() {
           </div>
         </div>
       </div>
-    </div>
+
+      <nav className="mobile-nav navbar bg-light navbar-light">
+      <div className="nav-left">
+        <span className="fw-bold fs-6">₹{selectedHotelDetails.discountPrice * nights} </span><span className="text-decoration-line-through"> ₹{selectedHotelDetails.maxPriceRoomPerNight * nights} </span><span> <i className="bi bi-caret-up-fill text-primary fw-bold"></i> </span>
+        <p>for 1 Room/{nights} Night</p>
+      </div>
+      <div className="nav-right">
+        <button className="mob-paymentBtn btn"> <p  style={{ fontFamily: 'Rubik', fontSize: '14px' }}>PROCEED</p>to payment</button>
+      </div>
+    </nav>
+      </>
   );
 }
 

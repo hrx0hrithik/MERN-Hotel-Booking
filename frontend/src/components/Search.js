@@ -51,9 +51,7 @@ function Search() {
   return (
     <form>
       <div
-        className="position-relative mx-auto p-2"
-        style={{ width: "50%", height: "390px" }}
-      >
+        className="search-form position-relative mx-auto">
         <div
           className="card rounded-4"
           style={{
@@ -61,8 +59,8 @@ function Search() {
             boxShadow: "rgba(0, 0, 0, 0.05) 0px 0px 0px 1px",
           }}
         >
-          <div className="card-body d-flex flex-column ">
-            <div className="radio p-1 d-flex justify-content-around">
+          <div className="card-body search-body d-flex flex-column ">
+            <div className="radio d-flex">
               <div className="form-check">
                 <input
                   className="form-check-input formInput"
@@ -70,10 +68,10 @@ function Search() {
                   name="radioBtn"
                   id="flexRadioDefault1"
                   value="India"
-                  checked="checked"
+                  checked
                   onChange={onChange}
                 />
-                <label className="form-check-label" htmlFor="flexRadioDefault1">
+                <label className="form-check-label label-1" htmlFor="flexRadioDefault1">
                   India
                 </label>
               </div>
@@ -86,13 +84,13 @@ function Search() {
                   value="International"
                   onChange={onChange}
                 />
-                <label className="form-check-label" htmlFor="flexRadioDefault2">
+                <label className="form-check-label label-2" htmlFor="flexRadioDefault2">
                   International
                 </label>
               </div>
             </div>
 
-            <div id="search-input" className="p-2 m-2">
+            <div id="search-input" className="p-2">
               <label htmlFor="searchLocation">Where?</label>
               <input
                 id="searchLocation"
@@ -124,7 +122,7 @@ function Search() {
                 />
               </div>
               <div className="vr position-relative">
-                <span className="position-absolute top-50 start-50 translate-middle badge rounded-pill px-3 py-2">
+                <span className="position-absolute top-50 start-50 translate-middle badge rounded-pill">
                   {night} Nights
                 </span>
               </div>
@@ -143,9 +141,9 @@ function Search() {
               </div>
             </div>
             <hr />
-            <div id="gusts-rooms" className="p-2 m-2">
-              <h6>Gusts & Rooms</h6>
-              <h5>
+            <div id="gusts-rooms" className="p-2">
+              <h6 className="guest-heading">Gusts & Rooms</h6>
+              <h5 className="guest-detail">
                 Adults {searchData.noOfAdults} | Child {searchData.noOfChild} |
                 Room {searchData.noOfRooms}
               </h5>

@@ -78,7 +78,7 @@ const Payment = () => {
             .then((data) => {
               // console.log('Payment verification:', data);
               setPaymentStatus('success');
-              confirmBooking('success')
+              confirmBooking('Success')
             })
             .catch((error) => {
               console.error('Error verifying payment:', error);
@@ -151,10 +151,11 @@ const Payment = () => {
       {paymentStatus === 'success' && ( 
         <>
         <h2 className='text-success'>Payment Successfull !!!</h2>
-        <p>If Receipt does not download automaticlly click</p>
+        <p>If Receipt does not download automaticlly click
         <button className='btn btn-primary mx-5 mt-3' onClick={handleGenerateReceipt}>
           Generate Receipt
         </button>
+        </p>
         </>
       )}
       <p className='closeTab m-3'>After payment, you will redirected to Home page</p>

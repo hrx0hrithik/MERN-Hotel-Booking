@@ -1,5 +1,5 @@
 import "./Navbar.css"
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {Link, useLocation, useNavigate} from 'react-router-dom';
 import userContext from "../context/userContext";
 
@@ -7,6 +7,8 @@ const Navbar = (props) => {
 
   const context = useContext(userContext)
   const { setUserDetails } = context;
+
+  const [mainNavbar, setMainNavbar] = useState(true)
 
   let history = useNavigate();
 
@@ -21,17 +23,25 @@ const Navbar = (props) => {
   let username = localUsername && localUsername ? localUsername.split(' ')[0] : '';
 
   let location = useLocation();
-  
+  const urlPattern = /^\/avalablehotels\/hoteldetails\//;
+
+  useEffect(()=>{
+
+    if (urlPattern.test(location.pathname)) {
+      setMainNavbar(false)
+    }else{
+      setMainNavbar(true)
+    }
+    // eslint-disable-next-line
+  },[location])
 
   return (
-<nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm bg-body-tertiary rounded">
-  <div className="container-fluid">
+    <>
+<nav className={`navbar navbar-expand-md navbar-light bg-light ${!mainNavbar? "hide-navbar": ""}`} >
+  <div className="container-fluid ">
     <div className="navbar-brand fw-bolder fs-4"> <span style={{color: " #ff6d38"}} > Go</span><span style={{color: "#2776db"}} >YOLO</span> </div>
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon"></span>
-    </button>
-    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+    <div className="navbar-collapse" id="navbarSupportedContent">
+      <ul className="navbar-nav ">
         <li className="nav-item">
           <Link className={`tabs-btn mx-2 ${location.pathname==="/"? "active-tab" : ""}`} aria-current="page" to="/"><i className="bi nav-icon bi-house-fill"></i> Home</Link>
         </li>
@@ -40,8 +50,8 @@ const Navbar = (props) => {
         </li>
         
       </ul>
-      { !localStorage.getItem('token')? <div className='d-flex'>
-        <ul className="navbar-nav me-2 mb-2 mb-lg-0">
+      { !localStorage.getItem('token')? 
+        <ul className="navbar-nav login-btn-class">
       <li className="nav-item dropdown me-2">
           <div className="btn btn-outline-primary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Login / Signup
@@ -52,10 +62,8 @@ const Navbar = (props) => {
             <li><Link className="dropdown-item" to='/signup' role="button">Signup</Link></li>
           </ul>
         </li>
-        </ul>
-        </div> : 
-        <div className='d-flex'>
-        <ul className="navbar-nav me-2 mb-2 mb-lg-0">
+        </ul>: 
+        <ul className="navbar-nav login-btn-class me-2 mb-2 mb-lg-0">
           <li className="nav-item dropdown me-2">
             <div className="btn btn-outline-primary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
               Hey {username}
@@ -67,14 +75,12 @@ const Navbar = (props) => {
           </ul>
           </li>
         </ul>
-        </div>
         
          }
     </div>
   </div>
 </nav>
-
-  )
-}
+</>
+)}
 
 export default Navbar

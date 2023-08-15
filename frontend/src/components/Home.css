@@ -3,20 +3,83 @@
         background-repeat: no-repeat;
         margin-bottom: 20px;
 }
+.home-cont{
+    margin-top: 55px;
+}
 .home-heading{
     color: white;
     font-weight: bold;
     padding: 9px;
     font-family: 'Rubik', sans-serif;
 }
-
+.dod-hr{
+    margin-top: 55px;
+}
 .deal-of-day{
     font-weight: bold;
     padding: 15px;
     font-family: 'Rubik', sans-serif;
 }
+.dod-card{
+    max-height: 500px;
+    min-width: 200px;
+}
 
 .cardImg{
     height: 30vh;
     object-fit: cover;
+}
+.card-title{
+    padding: 5px 2px;
+}
+.login-div{
+    width: 40%;
+}
+.signup-div{
+    width: 550px
+}
+
+@media only screen and (max-width: 771.98px){
+    .home {
+        background-image: none;
+    }
+    .rectangle{
+        width: 100vw;
+        height: 18vh;
+        background-color: #2274e0;
+        position: absolute;
+        z-index: -10;
+    }
+    .home-cont{
+        margin-top: 0;
+    }
+    .home-heading{
+        text-align: center;
+        padding-top: 20px;
+    }
+    .dod-hr{
+        display: none;
+        }
+    .deal-of-day{
+        display: none;
+    }
+    .dod-card{
+        overflow-x: scroll;
+    }
+    .dod-icon{
+        min-width: 250px;
+    }
+    .dod-item{
+        min-width: 250px;
+    }
+    .dod-card-text{
+        display: none;
+    }
+    .login-div{
+        width: 80vw;
+    }
+    .signup-div{
+        width: 80vw;
+        min-width: 300px;
+    }
 }

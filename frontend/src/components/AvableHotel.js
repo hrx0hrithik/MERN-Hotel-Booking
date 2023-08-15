@@ -1,11 +1,15 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './AvalableHotel.css'
 import HotelItem from '../components/HotelItem'
 import hotelContext from '../context/hotelContext';
 import reservationContext from '../context/reservationContext';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import ViewSwitch from './ViewSwitch';
 
 function AvableHotel() {
+
+  const history = useNavigate()
+  const [ switchState, setSwitchState ] = useState(true)
 
   const context = useContext(hotelContext, reservationContext);
   const {hotels, getAllHotels, reservation} = context;
@@ -22,17 +26,35 @@ function AvableHotel() {
       window.scrollTo(0, 0);
     }, [pathname]);
 
+    function handleClick() {
+      history('/')
+    }
+
+    let contentStyle
+    if (!switchState){
+      contentStyle = {
+        bottom: "-10px",
+        marginBottom: "65px",
+        marginTop: '10px'
+      }
+    }
+
   return (
+    <>
     <div className="backcolor pt-1">
-    <div className='container content' style={{"marginTop": "80px"}}>
-        <h2 style={{color: 'white', fontWeight: "bolder", fontFamily: "'Rubik', sans-serif"}} >{hotels.length === 0 ? 'No Hotels Avalable' : "List of the Hotels Avalable"}</h2>
+    <i className="bi bi-arrow-left-short" onClick={handleClick}></i>
+    <h2 className='hotel-mob-heading'>{hotels.length === 0 ? 'No Hotels Avalable' : "List of the Hotels Avalable"}</h2>
+    <ViewSwitch setSwitchState={setSwitchState} />
+      </div>
+      <div className='container content' style={contentStyle}>
+        <h2 className='hotel-list-heading'>{hotels.length === 0 ? 'No Hotels Avalable' : "List of the Hotels Avalable"}</h2>
         <div className="row row-cols-3">
         {hotels.map((hotel) => {
-          return<HotelItem key={hotel._id} hotel={hotel} />
+          return<HotelItem key={hotel._id} hotel={hotel} switchState={switchState} />
         }) }
         </div>
     </div>
-    </div>
+    </>
   )
 }
 

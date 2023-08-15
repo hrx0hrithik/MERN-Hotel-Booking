@@ -1,4 +1,24 @@
 .footer{
     background-color: white;
     margin-top: auto;
+    width: 100%;
+}
+.tnc-container{
+    margin: 0;
+}
+.row{
+    padding: 0.5rem;
+}
+@media only screen and (max-width: 771.98px){
+    .footer{
+        margin-bottom: 45px;
+        height: 60px;
+    }
+    .row{
+        margin: 0;
+        padding: 0;
+    }
+    .maidwith{
+        margin-top: 6px;
+    }
 }

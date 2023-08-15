@@ -1,0 +1,189 @@
+.background{
+    background-color: #2276e3;
+    width: 100%;
+    height: 160px;
+}
+.heading{
+    width: 777px;
+    margin: 0 auto;
+    padding: 38px 0 0 0;
+    color: white;
+    font-size: 22px;
+    font-weight: 600;
+    font-family: "Rubik",'Avenir',-apple-system,"Segoe UI","Roboto","Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+.profile-body{
+    margin: -93px auto 0;
+    width: 777px;
+}
+.card{
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+    display: flex;
+}
+.card-1{
+    padding: 36px 32px;
+    flex-direction: row;
+}
+.image-body{
+    display: flex;
+    flex-direction: column;
+    margin-right: 36px;
+}
+.profile-img-wrap{
+    width: 135px;
+    height: 135px;
+    border: 5px solid rgb(255, 109, 56);
+    border-radius: 50%;
+    overflow: hidden;
+}
+.text-body{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+.username-heading{
+    font-size: 24px;
+    font-weight: 700;
+    font-family: "Rubik",'Avenir',-apple-system,"Segoe UI","Roboto","Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+.card-2{
+    font-family: "Rubik",'Avenir',-apple-system,"Segoe UI","Roboto","Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    background-color: white;
+    min-height: 321px;
+    padding: 20px 30px;
+}
+.info-heading{
+    font-size: 18px;
+    font-weight: 500;
+}
+.column-fields{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.info-field-body > :first-child{
+    margin-top: 30px;
+}
+.floating-labels{
+    position: relative;
+    width: 328px;
+    padding: 18px 14px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+}
+.floating-labels > input{
+    outline: none;
+    border: none;
+    width: 100%;
+    font-size: 14px;
+    cursor: text;
+}
+.floating-labels > input:focus ~ label{
+    color: #2276e3;
+    font-weight: initial;
+}
+.floating-labels:focus-within{
+    border-color: #2276e3;
+}
+.floating-labels > label{
+    font-size: 12px;
+    font-weight: 500;
+    position: absolute;
+    top: -8px;
+    left: 14px;
+    padding: 0 4px;
+    color: rgb(119, 119, 119);
+    background-color: white;
+    cursor: text;
+    transition: all 0.2s ease 0s;
+}
+.prof-btn{
+    padding: 12px;
+    width: 137px;
+    background-color: white;
+    border: none;
+    border-radius: 8px;
+}
+.save-btn{
+    background-color: rgb(255, 109, 56);
+    color: white;
+}
+.table{
+    font-size: 14px;
+    font-weight: 400;
+    min-width: 700px;   
+}
+
+.table td,th{
+    min-width: 20px;
+    justify-content: center;
+}
+.table-wrap{
+    overflow: scroll;
+}
+.cancel-book-btn{
+    text-decoration: underline;
+    border: none;
+    padding: 0;
+    margin: 0;
+    background-color: white;
+}
+
+.app-banner{
+    display: flex;
+    height: 154px;
+    padding: 0 10px;
+    -moz-box-align: center;
+    align-items: center;
+    -moz-box-pack: center;
+    justify-content: center;
+}
+.banner-img1{
+    background-image: url("https://gos3.ibcdn.com/gi-app-1660799492.png");
+    width: 202px;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center bottom;
+}
+.banner-text{
+    margin: 14px 36px;
+}
+.playstore-icon{
+    width: 300px;
+    margin-top: 18px;
+}
+.qrcode-span{
+    width: 110px;
+    flex-shrink: 0;
+    margin-left: 24px;
+}
+.qrcode-wrap{
+    display: flex;
+    -moz-box-pack: center;
+    justify-content: center;
+    flex-direction: column;
+    -moz-box-align: center;
+    align-items: center;
+}
+.scantoget{
+    width: 93px;
+    height: 24px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-size: 10px;
+    background: rgb(20, 24, 35);
+    border-radius: 6px;
+    margin-bottom: -6px;
+    padding-top: 4px;
+}
+.qrcode{
+    height: 100px;
+    width: 100px;
+    background: rgb(255, 255, 255) url("../assets/images/qr-code.png") center center / 80% no-repeat;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 7px;
+    border-radius: 12px;
+}

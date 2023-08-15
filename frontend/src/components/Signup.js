@@ -48,7 +48,8 @@ function Signup(props) {
         setUserDetails(userData);
         history("/");
       } else {
-        alert("Invalid Credentials");
+        alert("Invalid Creditantials");
+        props.showAlert("Email already exist");
       }
     }
   };
@@ -61,9 +62,7 @@ function Signup(props) {
       <div className="container p-2 " style={{ marginTop: "75px" }}>
         <h2 className="fw-bolder text-light">Signup</h2>
         <div
-          className="container border shadow p-4 mb-5 bg-body-tertiary rounded position-relative"
-          style={{ width: "550px" }}
-        >
+          className="container signup-div border shadow p-4 mb-5 bg-body-tertiary rounded position-relative">
           <form className="" onSubmit={handleSubmit}>
             <Link
               type="button"
@@ -156,7 +155,7 @@ function Signup(props) {
                 id="tnc"
                 required
               />
-              <label className="form-check-label" htmlFor="tnc">
+              <label className="" htmlFor="tnc">
                 Agreed to Terms and Condition
               </label>
             </div>

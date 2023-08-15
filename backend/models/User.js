@@ -9,6 +9,11 @@ const UserSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    profileImg:{
+        imgBuffer:{
+            data: Buffer
+        }
+    },
     email:{
         type: String,
         required: true,
@@ -40,7 +45,7 @@ const UserSchema = new mongoose.Schema({
         default: null,
         minLength: 6
     },
-    booking:{
+    booking:[{
         reservation:{
             checkInDate: {
                 type: String,
@@ -64,13 +69,9 @@ const UserSchema = new mongoose.Schema({
                 type: Number,
                 default: 0
             },
-            paidAt:{type : Date}, // array of dates when the user has made a successful
-            // transactionId:{
-            //     type: String,
-            //     default: null
-            // }
+            paidAt:{type : Date},
         }
-    }
+    }]
 })
 const User = mongoose.model("user", UserSchema, "users");
 module.exports = User;

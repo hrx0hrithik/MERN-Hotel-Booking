@@ -8,11 +8,15 @@
     padding: 6px 15px;
 }
 
-
+.navbar-collapse{
+    justify-content: space-between;
+}
 .nav-icon{
     color: #2274e0;
 }
-
+.dropdown-item{
+    cursor: pointer;
+}
 .active-tab{
     background-color:#2274e0;
     color: white;
@@ -21,3 +25,63 @@
 .active-tab > .bi{
     color: white;
 }
+
+@media (min-width: 772px) {
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100vw;
+      z-index: 1000;
+      box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+    }
+  }
+  
+  @media (max-width: 771.98px) {
+    .root{
+        overflow-x: hidden!important;
+    }
+    .navbar {
+      position: fixed;
+      bottom: 0;
+      width: 100vw;
+      z-index: 1000;
+      margin: 0;
+      padding: 0;
+      box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.5em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+    }
+    .navbar-brand{
+        display: none;
+    }
+    .hide-navbar{
+        display: none;
+    }
+    .tabs-btn{
+        font-weight: 100;
+        border: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 12px;
+    }
+    .active-tab{
+        background-color: transparent;
+        color: rgb(128, 128, 128);
+    }
+    .active-tab > .bi{
+        color: #2274e0;
+    }
+    .navbar-nav{
+        flex-direction: row;
+        justify-content: space-around;
+        margin: 0;
+    }
+    .login-btn-class{
+        display: none;
+    }
+    .nav-icon{
+        color: #707070;
+        font-size: 1.25rem;
+    }
+  }
+  

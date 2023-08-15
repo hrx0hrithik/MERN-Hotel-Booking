@@ -1,28 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "./Footer";
+import './About.css'
+import { useLocation } from "react-router-dom";
 
 function About() {
-  const aboutPageStyle = {
-    padding: '20px',
-    maxWidth: '800px',
-    margin: '90px auto 20px auto',
-    backgroundColor: "white",
-    borderRadius: "15px",
-    boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"
-  };
 
   const listItemStyle = {
     marginBottom: '10px',
   };
+
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
   return(
     <>
-        <div className="container " style={aboutPageStyle}>
+        <div className="container about-page ">
           <div className="container">
       <h1>Welcome to <span className="fw-bold" style={{ color: '#ff6d38' }}>Go</span><span className="fw-bold" style={{ color: '#2877da' }} >YOLO</span> - Your Ultimate Hotel Room Booking Destination!</h1>
       <p>
         At GoYOLO, we are dedicated to providing you with the best hotel room booking experience. Our mission is to make your travel planning hassle-free and enjoyable. Whether you're traveling for business or leisure, we offer a wide selection of comfortable and luxurious rooms to suit your needs. Our user-friendly interface allows you to explore various hotels, check room availability, compare prices, and book your preferred room with just a few clicks.
       </p>
-
+      <br/>
       <h2>Why choose <span className="fw-bold" style={{ color: '#ff6d38' }}>Go</span><span className="fw-bold" style={{ color: '#2877da' }} >YOLO</span>?</h2>
       <ul>
         <li style={listItemStyle}>
@@ -64,7 +64,7 @@ function About() {
         Thank you for choosing GoYOLO. We look forward to serving you and making your hotel room booking experience exceptional. If you have any questions, suggestions, or feedback, please don't hesitate to reach out to our support team.
       </p>
 
-      <p>
+      <p className="fw-bold">
         Happy booking!
       </p>
       </div>

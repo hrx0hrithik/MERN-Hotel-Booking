@@ -4,7 +4,6 @@ import reservationContext from "./reservationContext";
 
 const HotelState = (props)=>{
 
-    const date = new Date().toISOString()
     const context = useContext(reservationContext);
     const { reservation, guestDetails, totalAmount } = context;
 
@@ -20,19 +19,26 @@ const getAllHotels =async ()=>{
     })
     const json = await response.json();
     setHotels(json)
-    // console.log(JSON.stringify({reservation}))
 };
 
-const getHotelDetail = async (id) =>{
-        const response = await fetch(`${host}/api/avalablehotels/hoteldetails/${id}`, {
-            method: "GET",
-            headers: {"Content-Type" : "application/json" },
-        })
-        const json = await response.json();
-        setSelectedHotelDetails(json)
-        // console.log(id)
-    // console.log(hotelDetails)
-}
+const getHotelDetail = async (id) => {
+    try {
+      const response = await fetch(`${host}/api/avalablehotels/hoteldetails/${id}`, {
+        method: "GET",
+        headers: {"Content-Type" : "application/json" },
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to fetch hotel details');
+      }
+  
+      const json = await response.json();
+      setSelectedHotelDetails(json);
+    } catch (error) {
+      console.error('Error fetching hotel details:', error);
+    }
+  }
+  
 
 const confirmBooking = async (bookingStatus) => {
 
@@ -40,9 +46,8 @@ const confirmBooking = async (bookingStatus) => {
     const hotelId = selectedHotelDetails._id;
     const billingAdd = guestDetails.address;
     const { pinCode, state } = guestDetails;
-    let paidAt = date;
     let totalAmountPaid = totalAmount;
-    const paymentInfo =  [{ totalAmountPaid, paidAt }];
+    const paymentInfo =  { totalAmountPaid };
 
     const response = await fetch(`${host}/api/avalablehotels/booking`, {
         method:"PUT",
@@ -57,8 +62,23 @@ const confirmBooking = async (bookingStatus) => {
     // console.log(reservation, hotelId, bookingStatus, paymentInfo, billingAdd, pinCode, state)
 }
 
+const cancelbooking = async (hotelId, bookingId) =>{
+  const token = localStorage.getItem("token");
+
+  const response = await fetch(`${host}/api/avalablehotels/cancelbooking`,{
+    method:'PUT',
+    headers: {
+      "Content-Type" : "application/json",
+      "auth-token": token
+    },
+    body: JSON.stringify({ hotelId: hotelId, bookingId: bookingId })
+  })
+  const json = await response.json();
+  console.log(response.body, json)
+}
+
 return (
-    <HotelContext.Provider value={{ hotels ,getAllHotels, selectedHotelDetails, getHotelDetail, confirmBooking}}>
+    <HotelContext.Provider value={{ hotels ,getAllHotels, selectedHotelDetails, getHotelDetail, confirmBooking, cancelbooking }}>
         {props.children}
     </HotelContext.Provider>
 )

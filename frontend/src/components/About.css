@@ -1,0 +1,18 @@
+.about-page {
+    padding: 20px;
+    max-width: 800px;
+    margin: 90px auto 20px auto;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+  
+  @media (max-width: 771.98px) {
+    .about-page {
+      margin: 20px auto;
+      padding: 10px;
+      min-width: 200px;
+      width: 90vw
+    }
+  }
+  

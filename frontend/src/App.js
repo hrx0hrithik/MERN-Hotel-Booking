@@ -24,7 +24,7 @@ function App() {
     });
     setTimeout(() => {
       setAlert({ msg: "", show: false });
-    }, 2000);
+    }, 2500);
   };
 
   return (
@@ -38,7 +38,7 @@ function App() {
               <Routes>
                 <Route exact path="/" element={<Home />}></Route>
                 <Route exact path="/about" element={<About />}></Route>
-                <Route exact path="/userprofile" element={<Profile />}></Route>
+                <Route exact path="/userprofile" element={<Profile showAlert={showAlert} />}></Route>
                 <Route
                   exact
                   path="/signup"

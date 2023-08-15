@@ -3,6 +3,7 @@ const router = express.Router();
 const Hotel = require('../models/Hotels');
 const User = require('../models/User');
 const fetchuser = require("../middleware/fetchusermiddleware");
+// const mongoose = require('mongoose');
 
 // ROUTE 1: Get all avalable hotels using : POST "/api/avalablehotels". No Login required
 
@@ -40,12 +41,38 @@ router.get('/hoteldetails/:id',async (req, res)=>{
 router.put('/booking', fetchuser, async (req, res)=>{
   const { reservation, hotelId, paymentInfo, bookingStatus, billingAdd, pinCode, state } = req.body;
   const userId = req.user.id;
+  const newBooking = {
+    reservation: {
+        checkInDate: reservation.checkInDate,
+        checkOutDate: reservation.checkOutDate
+    },
+    hotelId: hotelId,
+    bookingStatus: bookingStatus,
+    paymentInfo: {
+        totalPaid: paymentInfo.totalAmountPaid,
+        paidAt: new Date()
+    }
+};
   try { //find the hotel and update its reservation 
     let updatedHotel = await Hotel.findByIdAndUpdate(hotelId, { $set: {"reservation": reservation, "reservedByUser": userId } });
     // update user with hotel booking and payment details
-    let updateUser = await User.findByIdAndUpdate(userId, { $set:{ "booking.reservation": reservation, "booking.paymentInfo": paymentInfo, "booking.hotelId": hotelId, "booking.bookingStatus": bookingStatus } })
+
+    let updateUserQuery = { $push: { "booking": newBooking } };
+
+    if (billingAdd && pinCode && state) {
+        updateUserQuery.$set = {
+            "address": billingAdd,
+            "pinCode": pinCode,
+            "state": state
+        };
+    }
+
+    let updateUser = await User.findByIdAndUpdate(userId, updateUserQuery, { new: true });
+
     res.json(updateUser);
     // console.log(req.body)
+    // console.log(newBooking)
+
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Internal Server Error");
@@ -55,15 +82,23 @@ router.put('/booking', fetchuser, async (req, res)=>{
 // ROUTE 4: Canceling Hotel Room Booking : PUT "/api/avalablehotels/cancelbooking". Login required
 
 router.put('/cancelbooking', fetchuser, async (req, res)=>{
-  const { hotelId } = req.body;
+  const { hotelId, bookingId } = req.body;
   const userId = req.user.id;
   try {
-  let hotel = await Hotel.findByIdAndUpdate(hotelId, { $unset: { "reservation.checkInDate" : "", "reservation.checkOutDate" : "", reservedByUser: ""} })
+  let hotel = await Hotel.findByIdAndUpdate(hotelId, { $set: { "reservation.checkInDate" : "", "reservation.checkOutDate" : "", reservedByUser: ""} })
 
-  let updateUser = await User.findByIdAndUpdate(userId, { $unset:{ "booking.reservation": "", "booking.paymentInfo": "", "booking.hotelId": "", "booking.bookingStatus": "" } })
+  let updateUser = await User.findOneAndUpdate(
+    {
+      _id: userId,
+      "booking._id": bookingId
+    },
+    {
+      $set: { "booking.$.bookingStatus": "Canceled" }
+    },
+    { new: true }
+  );
+  res.json(updateUser);
 
-  res.json(hotel);
-    
   }catch (error) {
     console.error(error.message);
     res.status(500).send("Internal Server Error");
@@ -84,6 +119,5 @@ router.post('/addhotel', async (req, res)=>{
     res.status(500).send("Internal Server Error");
   }
 })
-
 
 module.exports = router;

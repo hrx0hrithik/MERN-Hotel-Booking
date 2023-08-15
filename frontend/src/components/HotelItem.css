@@ -2,26 +2,18 @@
     color: #fdba00;
     padding: 0 2px;
 }
-.background{
-    height: 340px;
-    background-color: #2274e0;
-}
-.page{
-    margin-top: 90px;
-}
 .hotel-detail-page {
     max-width: 85vw;
     margin-top: 50px;
-    padding-top: 20px;
 }
 .left-panel{
     font-family: 'Rubik', sans-serif;
     width: 63%;
-    /* margin-top: 47px; */
 }
 .hotel-detial-top{
     background-color: white;
     border-radius: 10px;
+    padding: 1.5rem 1rem;
 }
 .right-panel{
     width: 32%;
@@ -48,6 +40,7 @@ h5{
 .hotel-card{
     cursor: pointer;
     text-decoration: none;
+    margin: 1rem 0;
 }
 
 .hotel-card:hover{
@@ -62,6 +55,9 @@ h5{
     font-size:medium;
     margin: 0;
     padding: 0;
+}
+.mob-img-div{
+    display: none;
 }
 
 .paymentBtn{
@@ -105,20 +101,32 @@ h5{
 .guestlable{
     font-weight: 100;
     font-family: Arial, Helvetica, sans-serif;
+    margin: 5px 0;
 }
 
 .cardImg{
     height: 34vh;
     object-fit: cover;
+    padding: 1rem;
+    border-radius: 20px;
 }
 .carouselImg{
     max-height: 48vh ;
     object-fit: cover;
 }
+.checkGuestWrap{
+    display: flex;
+}
 .reservationdetails{
     background-color: #e8f3ff;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    padding: 1rem;
+}
+.checkInWrap{
+    display: flex;
+    flex-direction: column;
+    margin-right: 3rem;
 }
 .smallText{
     font-size: 12px;
@@ -126,3 +134,111 @@ h5{
     color:#7f8081;
     font-weight: 100;
 }
+.mob-hr{
+    display: none;
+}
+.mobile-nav{
+    display: none;
+}
+
+
+@media only screen and (max-width: 771.98px){
+    .hotel-card{
+        margin: 0.5rem 0;
+    }
+    .cardImg{
+        padding: 0.5rem;
+        border-radius: 12px;
+    }
+    .hotelitem-cardbody{
+        padding: 0 0.5rem
+    }
+    .price-flex{
+        position: absolute;
+        right: 10px;
+        bottom: 30px;
+      }
+    .hotel-detail-page {
+        max-width: 100% ;
+    }
+    .right-panel{
+        display: none;
+    }
+    .left-panel{
+        width: 100%;
+    }
+    .hotel-detial-top{
+        padding: 10px;
+    }
+    .hotel-info-top{
+        display: none;
+    }
+    .mob-img-div{
+        display: block;
+    }
+    .mob-img{
+        height: 27vh;
+        width: 20vh;
+        border-radius: 4px;
+        max-height: 240px;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+    #carouselExampleIndicators{
+        display: none;
+    }
+    .top-wrap{
+        display: flex;
+    }
+    .mob-hr{
+        display: block;
+        color: rgba(0, 0, 0, 0.641);
+    }
+    .checkGuestWrap{
+        display: none;
+    }
+    .reservationdetails{
+        justify-content: space-between;
+        margin: 10px 0;
+        background-color: white;
+        box-shadow: none;
+        padding: 0 10px;
+    }
+    .checkInWrap{
+        margin: 0;
+    }
+    .guesttitle, .guestname, .guestage{
+        width: 100%;
+    }
+    .hotel-detial-top input, .hotel-detial-top select{
+        width: 90%;
+    }
+    .pinandstate-input{
+        flex-direction: column;
+    }
+    .form-floating{
+        margin: 5px 0;
+    }
+    .mobile-nav{
+        display: flex;
+        padding: 5px 4px;
+    }
+    .nav-left{
+        font-size: 12px;
+    }
+    .mob-paymentBtn{
+        background-color: #ff6d38;
+        border: none;
+        color: white;
+        padding: 5px 25px;
+        margin: 0;
+        font-size: 10px;
+        line-height: normal;
+        border-radius: 4px;
+    }
+
+
+    .paymentBtn{
+        display: none;
+    }
+    }

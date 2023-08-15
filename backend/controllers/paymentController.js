@@ -72,9 +72,10 @@ const handlePaymentCallback = async (req, res) => {
         // Create a new PDF document using pdfkit
         const doc = new pdfkit();
         doc.pipe(res);
+        const fontPath = 'public/fonts/Rubik-Medium.ttf'; // Replace with the actual path to your font file
+        doc.font(fontPath);
            // Start a new transformation block for the logo
         doc.save();
-
         // Shift the starting position of the logo to the right
         const xOffset = 140; // Adjust the value as needed
         const yOffset = 0; // No vertical shift in this case
@@ -88,18 +89,18 @@ const handlePaymentCallback = async (req, res) => {
         doc.fontSize(14).text('Razorpay Payment', { align: 'center' });
         doc.moveDown(1);
       
-        doc.fontSize(20).text('Receipt', { align: 'center' });
+        doc.fontSize(18).text('Receipt', { align: 'center' });
         doc.moveDown(1);
       
         doc.fontSize(14).text(`Customer Name:   ${data.title}. ${data.name}\n`);
         doc.fontSize(14).text(`Phone Number:   ${data.phone}\n`);
-        doc.fontSize(14).text(`Amount Paid:   ${data.amount}\n`);
         doc.fontSize(14).text(`Date and Time Stamp:   ${data.date}\n`);
+        doc.fontSize(14).text(`Amount Paid:   ₹${data.amount}\n`);
+        doc.fontSize(14).text(`Paid To:   ${data.paidTo}`);
         doc.fontSize(14).text(`Check In:   ${data.checkInDate}\n`);
         doc.fontSize(14).text(`Check In Time:   ${data.checkInTime}\n`);
         doc.fontSize(14).text(`Check Out:   ${data.checkOutDate}\n`);
         doc.fontSize(14).text(`Check Out Time:   ${data.checkOutTime}\n`);
-        doc.fontSize(14).text(`Paid To:   ${data.paidTo}`);
         doc.end(); // End the PDF document
       
         // Set the response headers for PDF download
