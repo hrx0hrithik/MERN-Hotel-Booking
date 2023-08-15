@@ -12,7 +12,7 @@ function AvableHotel() {
   const [ switchState, setSwitchState ] = useState(true)
 
   const context = useContext(hotelContext, reservationContext);
-  const {hotels, getAllHotels, reservation} = context;
+  const { loading, hotels, getAllHotels, reservation} = context;
   useEffect(() => {
       getAllHotels(reservation);
     
@@ -37,6 +37,9 @@ function AvableHotel() {
         marginBottom: "65px",
         marginTop: '10px'
       }
+    }
+    if (loading) {
+      return <h3 style={{ margin: "100px auto"}}>Loading...</h3>;
     }
 
   return (

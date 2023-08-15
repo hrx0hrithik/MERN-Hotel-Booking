@@ -10,14 +10,16 @@ const HotelState = (props)=>{
 const host = process.env.REACT_APP_HOST_URL;
 const [hotels, setHotels] = useState([]);
 const [selectedHotelDetails, setSelectedHotelDetails] = useState([]);
+const [ loading, setLoading ] = useState(false)
 
 const getAllHotels =async ()=>{
+  setLoading(true)
     const response = await fetch(`${host}/api/avalablehotels`, {
         method: "POST",
         headers: {"Content-Type" : "application/json"},
         body: JSON.stringify({reservation})
     })
-    const json = await response.json();
+    const json = await response.json().then(setLoading(false));
     setHotels(json)
 };
 
@@ -78,7 +80,7 @@ const cancelbooking = async (hotelId, bookingId) =>{
 }
 
 return (
-    <HotelContext.Provider value={{ hotels ,getAllHotels, selectedHotelDetails, getHotelDetail, confirmBooking, cancelbooking }}>
+    <HotelContext.Provider value={{ loading, hotels ,getAllHotels, selectedHotelDetails, getHotelDetail, confirmBooking, cancelbooking }}>
         {props.children}
     </HotelContext.Provider>
 )
