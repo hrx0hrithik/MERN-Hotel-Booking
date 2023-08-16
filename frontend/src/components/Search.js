@@ -69,7 +69,7 @@ function Search(props) {
                   name="radioBtn"
                   id="flexRadioDefault1"
                   value="India"
-                  checked
+                  defaultChecked
                   onChange={onChange}
                 />
                 <label className="form-check-label label-1" htmlFor="flexRadioDefault1">
