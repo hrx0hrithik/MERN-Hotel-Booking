@@ -24,6 +24,9 @@
     max-height: 500px;
     min-width: 200px;
 }
+.card.dod-item{
+    margin-top: 0;
+}
 
 .cardImg{
     height: 30vh;

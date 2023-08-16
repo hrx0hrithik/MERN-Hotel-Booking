@@ -11,7 +11,6 @@ function Home(props) {
   const { setUserDetails } = context;
 
   const host = process.env.REACT_APP_HOST_URL;
-
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -52,14 +51,14 @@ function Home(props) {
           <div className="card dod-card">
             <div className="card-body p-0">
               <div className="d-flex">
-                <div className="card dod-icon">
+                <div className="card dod-icon" style={{ marginTop: '0px'}}>
                   <img
                     src="https://gos3.ibcdn.com/nond_v2_new-1635506214.png"
                     alt="Deal of the Day Logo"
                   />
                 </div>
                 <div>
-                  <div className="card dod-item">
+                  <div className="card dod-item" >
                     <img
                       src="https://www.tourmyindia.com/blog//wp-content/uploads/2016/02/Top-10-Luxury-Hotels-in-India.jpg"
                       className="cardImg card-img-top p-3"
