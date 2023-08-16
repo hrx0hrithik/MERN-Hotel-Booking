@@ -50,7 +50,7 @@ function Login(props) {
   return (
     <div className="home" style={{marginTop: "-15px"}}>
     <div className="container p-2" style={{ marginTop: "75px" }}>
-      <h1 className='text-light fw-bolder'>Login</h1>
+      <h1 className='heading-login fw-bolder'>Login</h1>
       <div className="container login-div border shadow p-4 mb-5 bg-body-tertiary rounded position-relative">
       <form className="" onSubmit={handleSubmit}>
       <Link to="/" type="button" className="btn-close position-absolute top-0 end-0 m-3" aria-label="Close" ></Link>

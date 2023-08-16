@@ -35,6 +35,12 @@
 .login-div{
     width: 40%;
 }
+.heading-login{
+    color: white;
+}
+.heading-signup{
+    color: white;
+}
 .signup-div{
     width: 550px
 }
@@ -77,6 +83,12 @@
     }
     .login-div{
         width: 80vw;
+    }
+    .heading-login{
+        color: #2274e0;
+    }
+    .heading-signup{
+        color: #2274e0;
     }
     .signup-div{
         width: 80vw;

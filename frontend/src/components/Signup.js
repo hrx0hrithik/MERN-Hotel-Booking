@@ -60,7 +60,7 @@ function Signup(props) {
   return (
     <div className="home" style={{ marginTop: "-15px" }}>
       <div className="container p-2 " style={{ marginTop: "75px" }}>
-        <h2 className="fw-bolder text-light">Signup</h2>
+        <h2 className="fw-bolder heading-signup">Signup</h2>
         <div
           className="container signup-div border shadow p-4 mb-5 bg-body-tertiary rounded position-relative">
           <form className="" onSubmit={handleSubmit}>
