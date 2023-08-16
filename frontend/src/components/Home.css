@@ -82,7 +82,7 @@
         display: none;
     }
     .login-div{
-        width: 80vw;
+        width: 85vw;
     }
     .heading-login{
         color: #2274e0;
@@ -91,7 +91,7 @@
         color: #2274e0;
     }
     .signup-div{
-        width: 80vw;
+        width: 85vw;
         min-width: 300px;
     }
 }
