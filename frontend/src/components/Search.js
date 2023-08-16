@@ -3,7 +3,7 @@ import "./Search.css";
 import reservationContext from "../context/reservationContext";
 import { useNavigate } from "react-router-dom";
 
-function Search() {
+function Search(props) {
   const context = useContext(reservationContext);
   const { setReservation } = context;
 
@@ -42,6 +42,7 @@ function Search() {
       });
       navigate("/avalablehotels");
     }
+    props.showAlert("Only One Room Avalable Per Hotel")
   }
 
   const onChange = (e) => {

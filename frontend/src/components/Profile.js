@@ -130,15 +130,22 @@ const Profile = (props) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
     return date.toLocaleDateString(undefined, options);
   }
+  function handleBackClick() {
+    history(-1)
+  }
 
   if (loading) {
     return <h3 style={{ margin: "100px auto"}}>Loading...</h3>;
   }
 
   return (
-    <div style={{ marginTop: "4rem" }}>
+    <div className="profileDiv">
       <section className="background">
-        <div className="heading">My Profile</div>
+        <div>
+        <i className="bi bi-arrow-left-short" onClick={handleBackClick}></i>
+        <p className="heading"> 
+         My Profile</p>
+         </div>
       </section>
       <section className="profile-body">
         <div className="card card-1">
@@ -159,7 +166,8 @@ const Profile = (props) => {
               name="firstimg"
               onChange={handleImageUpload}
             />
-            <button className="btn btn-outline-primary mt-2" onClick={() => imageInputRef.current.click()}>
+            <button className="mob-img" onClick={() => imageInputRef.current.click()}><i className="bi bi-camera-fill"></i></button>
+            <button className="btn edit-img-btn btn-outline-primary mt-2" onClick={() => imageInputRef.current.click()}>
               <i className="bi bi-pencil"></i> Edit Photo
             </button>
           </div>
@@ -367,7 +375,7 @@ const Profile = (props) => {
             </div>
           </div>
         )}
-        <div className="card mb-4">
+        <div className="card ">
           <div className="app-banner">
             <div className="banner-img1"></div>
             <div className="banner-text">
@@ -384,6 +392,11 @@ const Profile = (props) => {
               </div>
             </span>
           </div>
+        </div>
+        <div className="logoutBtn-div">
+        <button className="logout-btn">
+        <i className="bi bi-box-arrow-right"></i><span className="logout-name">LOGOUT</span>
+        </button>
         </div>
       </section>
       <Footer />

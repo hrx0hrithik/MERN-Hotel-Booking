@@ -3,6 +3,12 @@
     width: 100%;
     height: 160px;
 }
+.profileDiv{
+    margin-top: 4rem;
+}
+.bi-arrow-left-short{
+    display: none;
+}
 .heading{
     width: 777px;
     margin: 0 auto;
@@ -37,6 +43,9 @@
     border: 5px solid rgb(255, 109, 56);
     border-radius: 50%;
     overflow: hidden;
+}
+.edit-img-btn{
+    display: block;
 }
 .text-body{
     padding: 0;
@@ -186,4 +195,117 @@
     background: rgb(255, 255, 255) url("../assets/images/qr-code.png") center center / 80% no-repeat;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 7px;
     border-radius: 12px;
+}
+.logoutBtn-div{
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+.logout-btn{
+    background: #d9e7fa;
+    border-radius: 8px;
+    height: 44px;
+    width: 400px;
+    display: inline-flex;
+    -moz-box-align: center;
+    align-items: center;
+    -moz-box-pack: center;
+    justify-content: center;
+    outline: 0px;
+    border: 0px;
+    line-height: normal;
+    font-size: 16px;
+    font-weight: 500;
+    margin-right: 32px;
+    color: rgb(34, 118, 227);
+    cursor: pointer;
+}
+.bi-box-arrow-right{
+    font-size: 22px;
+    font-weight: bolder;
+    margin-right: 12px;
+}
+.logout-name{
+    line-height: normal;
+    font-size: 16px;
+    font-family: "Rubik",'Avenir',-apple-system,"Segoe UI","Roboto","Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    cursor: pointer;
+}
+.mob-img{
+    display: none;
+}
+@media (max-width: 771.98px){
+    .profileDiv{
+        margin-top: 0;
+    }
+    .bi-arrow-left-short{
+        display: block;
+        position: absolute;
+        color: white;
+        font-size: 30px;
+        font-weight: bolder;
+        top: 5px;
+        max-width: 25px;
+    }
+    .heading{
+        width: 70vw;
+        padding: 15px 0 0 0 ;
+    }
+    .profile-body{
+        width: 100vw;
+    }
+    .card{
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .card-1{
+        padding: 20px 10px;
+    }
+    .column-fields{
+        flex-direction: column;
+    }
+    .profile-img-wrap{
+        width: 90px;
+        height: 90px;
+        border: none;
+    }
+    .image-body{
+        margin-right: 10px;
+    }
+    .edit-img-btn{
+        display: none;
+    }
+    .mob-img{
+        display: flex;
+        position: absolute;
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+        border: 2px solid white;
+        background-color: #2276e3;
+        color: white;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        bottom: 20px;
+        left: 75px;
+    }
+
+    .bi-camera-fill{
+        position: relative;
+        top: -0.5px;
+
+    }
+    .floating-labels {
+        width: 85vw;
+    }
+    .app-banner{
+        display: none;
+    }
+    .logout-btn{
+        width: 85vw;
+        margin-right: 0;
+    }
 }

@@ -25,6 +25,9 @@
 .active-tab > .bi{
     color: white;
 }
+.mobile-nav-btn{
+    display: none;
+}
 
 @media (min-width: 772px) {
     .navbar {
@@ -82,6 +85,9 @@
     .nav-icon{
         color: #707070;
         font-size: 1.25rem;
+    }
+    .mobile-nav-btn{
+        display: flex;
     }
   }
   

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import "./HotelItem.css";
 import './AvalableHotel.css'
 import hotelContext from "../context/hotelContext";
@@ -6,12 +6,17 @@ import { useLocation, useNavigate } from "react-router-dom";
 import reservationContext from "../context/reservationContext";
 import StarRating from "./StarRating";
 
-function RoomSelect() {
+function RoomSelect(props) {
   const history = useNavigate();
   const context = useContext(hotelContext);
   const context2 = useContext(reservationContext);
   const { selectedHotelDetails } = context;
   const { nights, reservation, setGuestDetails, guestDetails, setTotalAmount } = context2;
+
+  useEffect(()=>{
+    props.showAlert("Only One Room Avalable Per Hotel")
+    // eslint-disable-next-line
+  },[])
  
   let noOfGuest = 1;
   const addGuestDiv = ()=>{
@@ -45,7 +50,8 @@ function RoomSelect() {
   const totalPay = (newPrice+500);
   const token = localStorage.getItem("token")
 
-  const handleSubmit = ()=>{
+  const handleSubmit = (e)=>{
+    e.preventDefault()
     setTotalAmount(totalPay)
     if(!token){
       alert("Please Login for Booking")
@@ -56,8 +62,15 @@ function RoomSelect() {
     }
   }
 
-  function handleClick() {
+  function handleBackClick() {
     history(-1)
+  }
+  
+  const paymentSubmitBtn = useRef()
+
+  const handleMobilePay = (e)=>{
+    e.preventDefault()
+    paymentSubmitBtn.current.click()
   }
 
   const onChange = (e)=>{
@@ -74,7 +87,7 @@ function RoomSelect() {
   return (
     <>
         <div className="backcolor pt-1">
-    <i className="bi bi-arrow-left-short" onClick={handleClick}></i>
+    <i className="bi bi-arrow-left-short" onClick={handleBackClick}></i>
     <h2 className='hotel-mob-heading'>Review Booking</h2>
       </div>
       <div className="container content mb-0">
@@ -282,7 +295,7 @@ function RoomSelect() {
             </div>
                 </div>
             </div>
-            <button className="rounded-3 paymentBtn p-3 mt-2" type="submit" >Proceed To Payment Options</button>
+            <button className="rounded-3 paymentBtn p-3 mt-2" type="submit" ref={paymentSubmitBtn}  >Proceed To Payment Options</button>
             </form>
           <div className="right-panel container">
             <div className="price-panel container p-3 ">
@@ -321,7 +334,7 @@ function RoomSelect() {
         <p>for 1 Room/{nights} Night</p>
       </div>
       <div className="nav-right">
-        <button className="mob-paymentBtn btn"> <p  style={{ fontFamily: 'Rubik', fontSize: '14px' }}>PROCEED</p>to payment</button>
+        <button className="mob-paymentBtn btn" type="button" onClick={(e)=>{ handleMobilePay(e) }}> <p  style={{ fontFamily: 'Rubik', fontSize: '14px' }}>PROCEED</p>to payment</button>
       </div>
     </nav>
       </>

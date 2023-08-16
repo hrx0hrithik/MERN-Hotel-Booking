@@ -6,7 +6,7 @@ import Footer from "./Footer";
 import userContext from "../context/userContext";
 import { useLocation } from "react-router-dom";
 
-function Home() {
+function Home(props) {
   const context = useContext(userContext);
   const { setUserDetails } = context;
 
@@ -45,7 +45,7 @@ function Home() {
         <div className="rectangle"></div>
         <div className="container home-cont">
           <h4 className="home-heading">Book hotel & Homestay</h4>
-          <Search />
+          <Search showAlert = {props.showAlert} />
           <hr className="dod-hr" />
           <h4 className="deal-of-day">Deal of the day</h4>
 

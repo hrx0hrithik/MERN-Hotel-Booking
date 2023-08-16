@@ -48,6 +48,12 @@ const Navbar = (props) => {
         <li className="nav-item">
           <Link className={`tabs-btn mx-2 ${location.pathname==="/about"? "active-tab" : ""}`} aria-current="page" to="/about"><i className="bi nav-icon bi-credit-card-2-front-fill"></i> About</Link>
         </li>
+        <li className="nav-item">
+          <Link className={`tabs-btn mx-2 mobile-nav-btn `} aria-current="page" to="/"><i className="bi nav-icon bi-airplane-fill"></i> Flight</Link>
+        </li>
+        <li className="nav-item">
+          <Link className={`tabs-btn mx-2 mobile-nav-btn ${location.pathname==="/login" || location.pathname==="/userprofile" ? "active-tab" : ""}`} aria-current="page" to={`${localStorage.token ? '/userprofile' : '/login'}`}><i className="bi nav-icon bi-person-fill"></i> Profile</Link>
+        </li>
         
       </ul>
       { !localStorage.getItem('token')? 

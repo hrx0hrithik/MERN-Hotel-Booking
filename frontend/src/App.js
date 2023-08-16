@@ -36,7 +36,7 @@ function App() {
               <Navbar showAlert={showAlert} />
               <Alerts alert={alert} />
               <Routes>
-                <Route exact path="/" element={<Home />}></Route>
+                <Route exact path="/" element={<Home showAlert={showAlert} />}></Route>
                 <Route exact path="/about" element={<About />}></Route>
                 <Route exact path="/userprofile" element={<Profile showAlert={showAlert} />}></Route>
                 <Route
@@ -57,7 +57,7 @@ function App() {
                 <Route
                   exact
                   path="/avalablehotels/hoteldetails/:id"
-                  element={<RoomSelect />}
+                  element={<RoomSelect showAlert={showAlert} />}
                 ></Route>
                 <Route exact path="/payment" element={<Payment />}></Route>
               </Routes>

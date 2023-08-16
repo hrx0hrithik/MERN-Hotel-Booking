@@ -236,6 +236,14 @@ h5{
         line-height: normal;
         border-radius: 4px;
     }
+    .mob-paymentBtn:hover{
+        background-color: #ff6d38;
+        color: white;
+    }
+    .mob-paymentBtn:focus-visible{
+        background-color: #ff6d38;
+        color: white;
+    }
 
 
     .paymentBtn{
