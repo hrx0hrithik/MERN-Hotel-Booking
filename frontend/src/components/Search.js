@@ -124,7 +124,7 @@ function Search(props) {
               </div>
               <div className="vr position-relative">
                 <span className="position-absolute top-50 start-50 translate-middle badge rounded-pill">
-                  {night} Nights
+                  {Math.abs(night)} Nights
                 </span>
               </div>
               <div>
