@@ -19,8 +19,10 @@ const getAllHotels =async ()=>{
         headers: {"Content-Type" : "application/json"},
         body: JSON.stringify({reservation})
     })
-    const json = await response.json().then(setLoading(false));
+    const json = await response.json();
     setHotels(json)
+    setLoading(false)
+
 };
 
 const getHotelDetail = async (id) => {

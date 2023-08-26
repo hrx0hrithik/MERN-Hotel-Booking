@@ -5,6 +5,7 @@ import hotelContext from '../context/hotelContext';
 import reservationContext from '../context/reservationContext';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ViewSwitch from './ViewSwitch';
+import Loader from './Loader';
 
 function AvableHotel() {
 
@@ -39,7 +40,7 @@ function AvableHotel() {
       }
     }
     if (loading) {
-      return <h3 style={{ margin: "100px auto"}}>Loading...</h3>;
+      return <Loader />;
     }
 
   return (

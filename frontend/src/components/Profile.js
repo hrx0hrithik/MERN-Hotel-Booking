@@ -6,6 +6,7 @@ import placeholderProfileImg from "../assets/images/profile-default.png";
 import playstoreIcon from "../assets/images/playstore-icon.png";
 import "./Profile.css";
 import { useNavigate } from "react-router-dom";
+import Loader from "./Loader";
 
 const Profile = (props) => {
 
@@ -135,7 +136,7 @@ const Profile = (props) => {
   }
 
   if (loading) {
-    return <h3 style={{ margin: "100px auto"}}>Loading...</h3>;
+    return <Loader />;
   }
 
   return (
