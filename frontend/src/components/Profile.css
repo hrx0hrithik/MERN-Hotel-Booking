@@ -123,7 +123,7 @@
 .table{
     font-size: 14px;
     font-weight: 400;
-    min-width: 700px;   
+    min-width: 705px;   
 }
 
 .table td,th{
@@ -132,6 +132,7 @@
 }
 .table-wrap{
     overflow: scroll;
+    max-height: 370px;
 }
 .cancel-book-btn{
     text-decoration: underline;
