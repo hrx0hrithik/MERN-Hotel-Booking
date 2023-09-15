@@ -66,9 +66,8 @@ const confirmBooking = async (bookingStatus) => {
     // console.log(reservation, hotelId, bookingStatus, paymentInfo, billingAdd, pinCode, state)
 }
 
-const cancelbooking = async (hotelId, bookingId) => {
-  try {
-    const token = localStorage.getItem("token");
+const cancelbooking = async (hotelId, bookingId) =>{
+  const token = localStorage.getItem("token");
 
   const response = await fetch(`${host}/api/avalablehotels/cancelbooking`,{
     method:'PUT',
