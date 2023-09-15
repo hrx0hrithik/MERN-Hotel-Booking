@@ -38,11 +38,11 @@ const Profile = (props) => {
     setShowModal(false);
   };
 
-  const handleCancelBooking = () => {
-    cancelbooking(modalHotelId, modalBookingId);
+  const handleCancelBooking = async() => {
+    await cancelbooking(modalHotelId, modalBookingId);
     closeModal();
-    props.showAlert('Booling Canceled Successfully')
-    history(0)
+    props.showAlert('Booking Canceled Successfully')
+    // history(0)
   };
 
   const handleImageUpload = async (event) => {
