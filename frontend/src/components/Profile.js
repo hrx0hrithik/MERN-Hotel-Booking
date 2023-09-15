@@ -41,7 +41,7 @@ const Profile = (props) => {
   const handleCancelBooking = () => {
     cancelbooking(modalHotelId, modalBookingId);
     closeModal();
-    props.showAlert('Booling Canceled Successfully')
+    props.showAlert('Booking Canceled Successfully')
     history(0)
   };
 
