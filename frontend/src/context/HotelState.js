@@ -66,20 +66,32 @@ const confirmBooking = async (bookingStatus) => {
     // console.log(reservation, hotelId, bookingStatus, paymentInfo, billingAdd, pinCode, state)
 }
 
-const cancelbooking = async (hotelId, bookingId) =>{
-  const token = localStorage.getItem("token");
+const cancelbooking = async (hotelId, bookingId) => {
+  try {
+    const token = localStorage.getItem("token");
 
-  const response = await fetch(`${host}/api/avalablehotels/cancelbooking`,{
-    method:'PUT',
-    headers: {
-      "Content-Type" : "application/json",
-      "auth-token": token
-    },
-    body: JSON.stringify({ hotelId: hotelId, bookingId: bookingId })
-  })
-  const json = await response.json();
-  console.log(response.body, json)
-}
+    const response = await fetch(`${host}/api/availablehotels/cancelbooking`, {
+      method: 'PUT',
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": token
+      },
+      body: JSON.stringify({ hotelId: hotelId, bookingId: bookingId })
+    });
+
+    if (!response.ok) {
+      // Handle HTTP error status codes here
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const json = await response.json();
+    console.log(response.body, json);
+  } catch (error) {
+    // Handle any errors that occurred during the fetch or processing
+    console.error("An error occurred:", error);
+  }
+};
+
 
 return (
     <HotelContext.Provider value={{ loading, hotels ,getAllHotels, selectedHotelDetails, getHotelDetail, confirmBooking, cancelbooking }}>
